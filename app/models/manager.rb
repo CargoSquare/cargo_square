@@ -1,5 +1,26 @@
 class Manager < ActiveRecord::Base
+  # Callbacks
+  before_save :remove_useless_character
+  # Validation
+  validates :phone_number, format: { with: /[0-9]+/, :message => "Invalid phone_number foramt"}
+  # Association
   belongs_to :client
   belongs_to :station
   belongs_to :order
+
+  private
+  def remove_useless_character(manager)
+    if manager.phone_number != nil
+      manager.phone_number = manager.phone_number.gsub(/[^0-9\s]/, '')
+    end
+    if manager.email != nil
+      manager.email = manager.email.gsub(/[\s]/, '')
+    end
+    if manager.fax != nil
+      manager.fax = manager.fax.gsub(/[\s]/, '')
+    end
+    if manager.name != nil
+      manager.name = manager.name.gsub(/[\s]/, '')
+    end
+  end
 end
