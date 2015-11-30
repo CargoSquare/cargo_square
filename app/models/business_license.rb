@@ -1,6 +1,6 @@
 class BusinessLicense < ActiveRecord::Base
   # Callbacks
-  before_save :remove_whitespace
+  before_save :remove_useless_character
 
   # Validation
   validates :reg_number, :company_name, :director_name, presence: true
@@ -10,7 +10,8 @@ class BusinessLicense < ActiveRecord::Base
   has_one :address
 
   private
-  def remove_whitespace(license)
+  def remove_useless_character
+    license = self
     if license.reg_number != nil
       license.reg_number = license.reg_number.delete(' ').delete('-')
     end

@@ -1,6 +1,6 @@
 class Address < ActiveRecord::Base
   # Callbacks 
-  before_save  :remove_whitespace
+  before_save  :remove_useless_character
 
   # Validation
   validates :postcode, presence: true
@@ -11,7 +11,8 @@ class Address < ActiveRecord::Base
   belongs_to :station
 
   private
-  def remove_whitespace(address)
+  def remove_useless_character
+    address = self
     if address.postcode != nil
       address.postcode = address.postcode.delete(' ').delete('-')
     end

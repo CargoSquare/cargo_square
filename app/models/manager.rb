@@ -8,13 +8,14 @@ class Manager < ActiveRecord::Base
   belongs_to :station
   belongs_to :order
 
-  def phone_number
+  def formatted_phone_number
     # TODO
     # return full formated phonenumber
   end
 
   private
-  def remove_useless_character(manager)
+  def remove_useless_character
+    manager = self
     if manager.phone_number != nil
       manager.phone_number = manager.phone_number.gsub(/[^0-9\s]/, '')
     end
