@@ -60,7 +60,8 @@ num = 0
 
   manager = Manager.new
   manager.name = "관리자" + num.to_s
-  manager.phone_number = "abc@example.com"
+  manager.phone_number = "010-2943-5025"
+  manager.email = "abc@example.com"
   manager.client = client
   manager.save
 end
