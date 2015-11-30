@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127061831) do
+ActiveRecord::Schema.define(version: 20151130030755) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "postcode",            null: false
+    t.string   "new_address"
+    t.string   "old_address"
+    t.string   "detail_address"
+    t.string   "english_address"
+    t.integer  "business_license_id"
+    t.integer  "station_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "addresses", ["business_license_id"], name: "index_addresses_on_business_license_id"
+  add_index "addresses", ["station_id"], name: "index_addresses_on_station_id"
 
   create_table "bank_accounts", force: :cascade do |t|
     t.string   "bank_code"
@@ -19,6 +34,76 @@ ActiveRecord::Schema.define(version: 20151127061831) do
     t.text     "etc"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "business_licenses", force: :cascade do |t|
+    t.string   "reg_number",      null: false
+    t.string   "company_name",    null: false
+    t.string   "director_name",   null: false
+    t.string   "business_status"
+    t.string   "business_item"
+    t.integer  "company_id"
+    t.string   "company_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.integer  "settlement_period"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "freights", force: :cascade do |t|
+    t.integer  "weight"
+    t.integer  "quantity"
+    t.text     "description"
+    t.integer  "order_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "freights", ["order_id"], name: "index_freights_on_order_id"
+
+  create_table "managers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "fax"
+    t.integer  "client_id"
+    t.integer  "station_id"
+    t.integer  "order_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "managers", ["client_id"], name: "index_managers_on_client_id"
+  add_index "managers", ["order_id"], name: "index_managers_on_order_id"
+  add_index "managers", ["station_id"], name: "index_managers_on_station_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "status"
+    t.string   "company_name"
+    t.datetime "pickup_duedate"
+    t.datetime "dropoff_duedate"
+    t.integer  "sales"
+    t.integer  "purchase"
+    t.text     "etc"
+    t.integer  "source_id"
+    t.integer  "destination_id"
+    t.integer  "truck_driver_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "orders", ["destination_id"], name: "index_orders_on_destination_id"
+  add_index "orders", ["source_id"], name: "index_orders_on_source_id"
+  add_index "orders", ["truck_driver_id"], name: "index_orders_on_truck_driver_id"
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "company_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "truck_drivers", force: :cascade do |t|
@@ -41,12 +126,12 @@ ActiveRecord::Schema.define(version: 20151127061831) do
   end
 
   create_table "trucks", force: :cascade do |t|
-    t.string   "truck_number",    null: false
-    t.string   "truck_type",      null: false
-    t.float    "truck_size",      null: false
-    t.float    "truck_width"
-    t.float    "truck_depth"
-    t.float    "truck_height"
+    t.string   "number",          null: false
+    t.string   "category",        null: false
+    t.float    "size",            null: false
+    t.float    "width"
+    t.float    "depth"
+    t.float    "height"
     t.integer  "truck_driver_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
