@@ -8,6 +8,11 @@ class Manager < ActiveRecord::Base
   belongs_to :station
   belongs_to :order
 
+  def phone_number
+    # TODO
+    # return full formated phonenumber
+  end
+
   private
   def remove_useless_character(manager)
     if manager.phone_number != nil
