@@ -12,6 +12,8 @@ class Address < ActiveRecord::Base
 
   private
   def remove_whitespace(address)
-    address.poastcode = address.postcode.delete(' ').delete('-')
+    if address.postcode != nil
+      address.postcode = address.postcode.delete(' ').delete('-')
+    end
   end
 end

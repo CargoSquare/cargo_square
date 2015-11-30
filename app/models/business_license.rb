@@ -11,6 +11,8 @@ class BusinessLicense < ActiveRecord::Base
 
   private
   def remove_whitespace(license)
-    license.reg_number = license.reg_number.delete(' ').delete('-')
+    if license.reg_number != nil
+      license.reg_number = license.reg_number.delete(' ').delete('-')
+    end
   end
 end
