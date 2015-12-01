@@ -1,7 +1,8 @@
 class Address < ActiveRecord::Base
+  # Audited
+  audited
   # Callbacks 
   before_save  :remove_useless_character
-
   # Validation
   validates :postcode, presence: true
   validates :postcode, format: { with: /\d\d\d\d\d/,

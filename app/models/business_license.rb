@@ -1,4 +1,6 @@
 class BusinessLicense < ActiveRecord::Base
+  # Audited
+  audited
   # Company Types
   @company_types = ["개인", "법인"]
   # Callbacks

@@ -1,4 +1,6 @@
 class Truck < ActiveRecord::Base
+  # Audited
+  audited
   # Truck Category
   @categories = ["일반", "윙", "탑"]
   # Callbacks

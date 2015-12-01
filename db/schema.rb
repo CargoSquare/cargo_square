@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130030755) do
+ActiveRecord::Schema.define(version: 20151201014520) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "postcode",            null: false
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(version: 20151130030755) do
 
   add_index "addresses", ["business_license_id"], name: "index_addresses_on_business_license_id"
   add_index "addresses", ["station_id"], name: "index_addresses_on_station_id"
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], name: "associated_index"
+  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index"
+  add_index "audits", ["created_at"], name: "index_audits_on_created_at"
+  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid"
+  add_index "audits", ["user_id", "user_type"], name: "user_index"
 
   create_table "bank_accounts", force: :cascade do |t|
     t.string   "bank_code"
@@ -82,8 +105,7 @@ ActiveRecord::Schema.define(version: 20151130030755) do
   add_index "managers", ["station_id"], name: "index_managers_on_station_id"
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "status"
-    t.string   "company_name"
+    t.integer  "status",          default: 0
     t.datetime "pickup_duedate"
     t.datetime "dropoff_duedate"
     t.integer  "sales"
@@ -92,8 +114,8 @@ ActiveRecord::Schema.define(version: 20151130030755) do
     t.integer  "source_id"
     t.integer  "destination_id"
     t.integer  "truck_driver_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "orders", ["destination_id"], name: "index_orders_on_destination_id"

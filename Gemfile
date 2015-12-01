@@ -45,3 +45,6 @@ group :development do
   gem 'spring'
 end
 
+# Audited for tracking changes
+gem "audited", "~> 4.0"
+gem "audited-activerecord"

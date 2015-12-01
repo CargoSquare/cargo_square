@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  # Audited
+  audited
   # Statuses
   @statuses = ["오더등록", "배차완료", "픽업완료", "하차완료", "마감완료"]
   # Validation
