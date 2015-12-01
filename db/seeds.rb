@@ -12,11 +12,11 @@ num = 0
   truck = Truck.new
   truck.number = "인천 가 " + (num+1000).to_s
   if i%3 == 0
-    truck.category = "일반"
+    truck.category = Truck.categories[0]
   elsif i%3 == 1
-    truck.category = "윙"
+    truck.category = Truck.categories[1]
   elsif i%3 == 2
-    truck.category = "탑"
+    truck.category = Truck.categories[2]
   end
 
   if i%4 == 0
@@ -44,6 +44,7 @@ num = 0
   license.reg_number = "123-123-" + (num+1000).to_s
   license.company_name = "운송회사" + num.to_s
   license.director_name = "대표" + num.to_s
+  license.business_type = BusinessLicense.business_types[0]
   license.company = company
   license.save!
 
@@ -55,6 +56,7 @@ num = 0
   license.reg_number = "123-123-" + (num+1000).to_s
   license.company_name = "제조회사" + num.to_s
   license.director_name = "대표" + num.to_s
+  license.business_type = BusinessLicense.business_types[1]
   license.company = client
   license.save!
 
@@ -97,12 +99,13 @@ puts "Created Station dummy data"
 num = 0
 (1..100).each do |i|
   order = Order.new
-  order.status = i%5
+  order.status = Order.statuses[0]
   order.manager = Manager.all.shuffle[0]
   order.sales = 100
   order.purchase = 90
 
-  order.source = Station.all.shuffle[0]
-  order.destination = Station.all.shuffle[0]
+  stations = Station.all.shuffle
+  order.source = stations[0]
+  order.destination = stations[1]
   order.save!
 end
