@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   belongs_to :destination, class_name: "Station", foreign_key: "destination_id"
   has_one :truck_driver
   has_one :manager
-  has_many :freight
+  has_many :freights
 
   # Customized reader and writer for status
   def status

@@ -108,4 +108,12 @@ num = 0
   order.source = stations[0]
   order.destination = stations[1]
   order.save!
+
+  freight = Freight.new
+  random = Random.new
+  freight.weight = random.rand(100)
+  freight.quantity = random.rand(10) + 1
+  freight.description = "화물 설명" + num.to_s
+  freight.order = order
+  freight.save
 end
