@@ -8,6 +8,11 @@ class TruckDriver < ActiveRecord::Base
   belongs_to :company, class_name: "TruckingCompany", foreign_key: "trucking_company_id"
   has_one :truck
 
+  def formatted_phone_number
+    # TODO
+    # return full formatted phonenumber
+  end
+
   private
   def remove_useless_character
     driver = self
