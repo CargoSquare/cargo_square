@@ -1,6 +1,6 @@
 class Truck < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Truck Category
   def self.categories
     return ["일반", "윙", "탑"]

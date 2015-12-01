@@ -1,6 +1,6 @@
 class TruckDriver < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Callbacks
   before_save :remove_useless_character
 

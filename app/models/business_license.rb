@@ -1,6 +1,6 @@
 class BusinessLicense < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Business Types
   def self.business_types
    return ["개인", "법인"]

@@ -1,6 +1,6 @@
 class Station < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Association
   has_one :address
   has_one :manager

@@ -1,6 +1,6 @@
 class Manager < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Callbacks
   before_save :remove_useless_character
   # Validation

@@ -1,6 +1,6 @@
 class Freight < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Association
   belongs_to :order
 end

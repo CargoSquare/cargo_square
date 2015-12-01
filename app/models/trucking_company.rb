@@ -1,6 +1,6 @@
 class TruckingCompany < ActiveRecord::Base
   # Audited
-  audited
+  audited on: [:update, :destroy]
   # Association
   has_many :drivers, class_name: "TruckDriver", primary_key: "id", foreign_key: "trucking_company_id"
   has_many :trucks, through: :truck_drivers
