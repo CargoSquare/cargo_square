@@ -14,7 +14,7 @@ class Address < ActiveRecord::Base
   def remove_useless_character
     address = self
     if address.postcode != nil
-      address.postcode = address.postcode.delete(' ').delete('-')
+      address.postcode.gsub!(/[\s-]/, '')
     end
   end
 end

@@ -17,16 +17,16 @@ class Manager < ActiveRecord::Base
   def remove_useless_character
     manager = self
     if manager.phone_number != nil
-      manager.phone_number = manager.phone_number.gsub(/[^0-9\s]/, '')
+      manager.phone_number.gsub!(/[^0-9\s]/, '')
     end
     if manager.email != nil
-      manager.email = manager.email.gsub(/[\s]/, '')
+      manager.email.gsub!(/[\s]/, '')
     end
     if manager.fax != nil
-      manager.fax = manager.fax.gsub(/[\s]/, '')
+      manager.fax.gsub!(/[\s]/, '')
     end
     if manager.name != nil
-      manager.name = manager.name.gsub(/[\s]/, '')
+      manager.name.gsub!(/[\s]/, '')
     end
   end
 end

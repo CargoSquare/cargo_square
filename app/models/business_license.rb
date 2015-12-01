@@ -13,7 +13,7 @@ class BusinessLicense < ActiveRecord::Base
   def remove_useless_character
     license = self
     if license.reg_number != nil
-      license.reg_number = license.reg_number.delete(' ').delete('-')
+      license.reg_number.gsub!(/[\s-]/, '')
     end
   end
 end

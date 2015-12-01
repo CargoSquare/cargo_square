@@ -13,10 +13,10 @@ class Truck < ActiveRecord::Base
   def remove_useless_character
     truck = self
     if truck.number != nil
-      truck.number = truck.number.gsub(/[\s]/, '')
+      truck.number.gsub!(/[\s]/, '')
     end
     if truck.category != nil
-      truck.category = truck.category.gsub(/[\s]/, '')
+      truck.category.gsub!(/[\s]/, '')
     end
   end
 end
