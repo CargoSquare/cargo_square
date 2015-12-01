@@ -2,12 +2,14 @@ class Truck < ActiveRecord::Base
   # Audited
   audited
   # Truck Category
-  @categories = ["일반", "윙", "탑"]
+  def self.categories
+    return ["일반", "윙", "탑"]
+  end
   # Callbacks
   before_save :remove_useless_character
   # Validation
   validates :number, :category, :size, presence: true
-  validates :category, inclusion: {in: @categories }
+  validates :category, inclusion: {in: self.categories }
   # Association
   belongs_to :driver, class_name: "TruckDriver", foreign_key: "truck_driver_id"
 
