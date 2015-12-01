@@ -1,7 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.integer :status
+      t.integer :status, default: 0
       t.datetime :pickup_duedate
       t.datetime :dropoff_duedate
       t.integer :sales
