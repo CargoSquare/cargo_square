@@ -34,6 +34,39 @@ class Order < ActiveRecord::Base
 
   # Status History
   def status_info
+    # Init info hash
+    info = {}
+    Order.statuses.each_with_index do |stat, i|
+      if i == 0
+        info[i] = self.created_at
+      else 
+        info[i] = nil
+      end
+    end
+
+    # Iterate audits
+    current_status_index = 0
+    self.audits.each do |audit|
+      changes = audit.audited_changes["status"]
+      if changes != nil and changes.kind_of?(Array)
+        if changes.count > 1
+          from = changes[0]
+          to = changes[1]
+          current_status_index = to
+
+          # If status jumps.. ex) from 1 to 4
+          ((from+1)..to).each do |i|
+            info[i] = audit.created_at
+          end
+        end
+      end
+    end
+
+    # Remove Useless data
+    ((current_status_index+1)...(Order.statuses.count)).each do |i|
+      info[i] = nil
+    end
     
+    return info
   end
 end
