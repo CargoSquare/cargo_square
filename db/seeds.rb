@@ -28,42 +28,42 @@ num = 0
   elsif i%4 == 3
     truck.size = 1
   end
-  truck.save
+  truck.save!
 
   driver = TruckDriver.new
   driver.name = "최석원" + num.to_s
   driver.truck = truck
-  driver.save
+  driver.save!
 
   company = TruckingCompany.new 
   company.settlement_period = i%30
   company.drivers.push(driver)
-  company.save
+  company.save!
 
   license = BusinessLicense.new
   license.reg_number = "123-123-" + (num+1000).to_s
   license.company_name = "운송회사" + num.to_s
   license.director_name = "대표" + num.to_s
   license.company = company
-  license.save
+  license.save!
 
   client = Client.new
   client.settlement_period = (i+7)%30
-  client.save
+  client.save!
 
   license = BusinessLicense.new
   license.reg_number = "123-123-" + (num+1000).to_s
   license.company_name = "제조회사" + num.to_s
   license.director_name = "대표" + num.to_s
   license.company = client
-  license.save
+  license.save!
 
   manager = Manager.new
   manager.name = "관리자" + num.to_s
   manager.phone_number = "010-2943-5025"
   manager.email = "abc@example.com"
   manager.client = client
-  manager.save
+  manager.save!
 end
 
 puts "Created Truck related dummy data"
@@ -72,12 +72,12 @@ num = 0
 (1..100).each do |i|
   num = num + 1
   address = Address.new
-  address.postcode = "123-123-" + num.to_s
+  address.postcode = "12354"
   address.new_address = "도로명 주소" + num.to_s
   address.old_address = "지번 주소" + num.to_s
   address.detail_address = "상세 주소" + num.to_s
   address.english_address = "English Address" + num.to_s
-  address.save
+  address.save!
 end 
 
 puts "Created Address dummy data"
@@ -89,6 +89,7 @@ num = 0
   station.address = Address.all.shuffle[0]
   station.company_name = "실화주" + num.to_s
   station.manager = Manager.all.shuffle[0]
+  station.save!
 end
 
 puts "Created Station dummy data"
@@ -103,5 +104,5 @@ num = 0
 
   order.source = Station.all.shuffle[0]
   order.destination = Station.all.shuffle[1]
-  order.save
+  order.save!
 end
