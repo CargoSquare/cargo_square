@@ -10,7 +10,7 @@ class Manager < ActiveRecord::Base
 
   def formatted_phone_number
     # TODO
-    # return full formated phonenumber
+    # return full formatted phonenumber
   end
 
   private
