@@ -98,7 +98,6 @@ num = 0
   order = Order.new
   order.status = i%5
   order.manager = Manager.all.shuffle[0]
-  order.company_name = order.manager.client.business_license.company_name
   order.sales = 100
   order.purchase = 90
 
