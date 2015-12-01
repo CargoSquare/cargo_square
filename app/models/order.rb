@@ -5,13 +5,13 @@ class Order < ActiveRecord::Base
   audited
   # Statuses
   def self.statuses
-    return ["오더등록", "배차완료", "픽업완료", "하차완료", "마감완료"]
+    return ["오더등록", "오더확인", "배차완료", "픽업완료", "하차완료", "마감완료"]
   end
   # Validation
-  validates :status, inclusion: {in: [0, 1, 2, 3, 4]}
+  validates :status, inclusion: {in: (0...self.statuses.count).to_a}
   # Association
-  has_one :source, :class_name => "Station", :foreign_key => "source_id"
-  has_one :destination, :class_name => "Station", :foreign_key => "destination_id"
+  belongs_to :source, class_name: "Station", foreign_key: "source_id"
+  belongs_to :destination, class_name: "Station", foreign_key: "destination_id"
   has_one :truck_driver
   has_one :manager
   has_many :freight
@@ -23,5 +23,8 @@ class Order < ActiveRecord::Base
     else
       return "Error in status"
     end
+  end
+  def status_info
+    
   end
 end

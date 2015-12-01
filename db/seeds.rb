@@ -103,6 +103,6 @@ num = 0
   order.purchase = 90
 
   order.source = Station.all.shuffle[0]
-  order.destination = Station.all.shuffle[1]
+  order.destination = Station.all.shuffle[0]
   order.save!
 end
