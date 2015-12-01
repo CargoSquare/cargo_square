@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20151201014520) do
     t.string   "director_name",   null: false
     t.string   "business_status"
     t.string   "business_item"
+    t.integer  "business_type"
     t.integer  "company_id"
     t.string   "company_type"
     t.datetime "created_at",      null: false
