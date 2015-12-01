@@ -9,7 +9,7 @@ class BusinessLicense < ActiveRecord::Base
   before_save :remove_useless_character
   # Validation
   validates :reg_number, :company_name, :director_name, :company_type, presence: true
-  validates :business_type, inclusion: {in: (0...BusinessLicense.business_types.count).to_a }
+  validates :business_type, inclusion: {in: BusinessLicense.business_types }
   # Association
   belongs_to :company, polymorphic: true
   has_one :address

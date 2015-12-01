@@ -18,7 +18,7 @@ class Truck < ActiveRecord::Base
     if self[:category] == nil
       return nil
     end
-    return Truck.categoreis[self[:category]]
+    return Truck.categories[self[:category]]
   end
   def category=(cat)
     categories = Truck.categories

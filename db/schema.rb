@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20151201014520) do
 
   create_table "trucks", force: :cascade do |t|
     t.string   "number",          null: false
-    t.string   "category",        null: false
+    t.integer  "category",        null: false
     t.float    "size",            null: false
     t.float    "width"
     t.float    "depth"

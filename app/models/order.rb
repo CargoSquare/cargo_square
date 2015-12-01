@@ -1,6 +1,4 @@
 class Order < ActiveRecord::Base
-  private
-  cattr_accessor :statuses
   # Audited
   audited
   # Statuses
@@ -8,7 +6,7 @@ class Order < ActiveRecord::Base
     return ["오더입력", "오더등록", "배차완료", "픽업완료", "하차완료", "마감완료"]
   end
   # Validation
-  validates :status, inclusion: {in: (0...Order.statuses.count).to_a}
+  validates :status, inclusion: {in: Order.statuses}
   # Association
   belongs_to :source, class_name: "Station", foreign_key: "source_id"
   belongs_to :destination, class_name: "Station", foreign_key: "destination_id"
