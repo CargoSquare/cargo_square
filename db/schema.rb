@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20151201014520) do
     t.datetime "dropoff_duedate"
     t.integer  "sales"
     t.integer  "purchase"
-    t.float    "size"
+    t.float    "truck_size"
     t.text     "etc"
     t.integer  "source_id"
     t.integer  "destination_id"

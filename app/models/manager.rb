@@ -10,18 +10,24 @@ class Manager < ActiveRecord::Base
   belongs_to :client
   belongs_to :station
   belongs_to :order
+  # Custom Modules
+  include PhoneNumberHandler
 
-  def formatted_phone_number
-    # TODO
-    # return full formatted phonenumber
+  # Customized reader and writer for phone_number
+  def phone_number
+    if self[:phone_number] == nil
+      return nil
+    end
+    phone_number = self[:phone_number]
+    return PhoneNumberHandler.format_phone_number(phone_number)
+  end
+  def phone_number=(num)
+    self[:phone_number] = PhoneNumberHandler.pure_phone_number(num)
   end
 
   private
   def remove_useless_character
     manager = self
-    if manager.phone_number != nil
-      manager.phone_number.gsub!(/[^0-9\s]/, '')
-    end
     if manager.email != nil
       manager.email.gsub!(/[\s]/, '')
     end
