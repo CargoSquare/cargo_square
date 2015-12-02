@@ -10,10 +10,12 @@ class Order < ActiveRecord::Base
   # Validation
   validates :status, inclusion: {in: Order.statuses}
   # Association
+  belongs_to :order_manager, class_name: "Manager", foreign_key: "order_manager_id"
+  belongs_to :charge_manager, class_name: "Manager", foreign_key: "charge_manager_id"
+  belongs_to :freight_manager, class_name: "Manager", foreign_key: "freight_manager_id"
   belongs_to :source, class_name: "Station", foreign_key: "source_id"
   belongs_to :destination, class_name: "Station", foreign_key: "destination_id"
   has_one :truck_driver
-  has_one :manager
   has_many :freights
 
   # Customized reader and writer for status
@@ -33,6 +35,16 @@ class Order < ActiveRecord::Base
       raise "Invalid order status..."
     end
   end 
+
+  # Customized reader and writer for manager
+  def manager
+    return self.order_manager
+  end
+  def manager=(manager)
+    self.order_manager = manager
+    self.charge_manager ||= manager
+    self.freight_manager ||= manager
+  end
 
   # Status History
   def status_info

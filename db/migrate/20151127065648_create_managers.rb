@@ -9,7 +9,6 @@ class CreateManagers < ActiveRecord::Migration
 
       t.belongs_to :client, index: true
       t.belongs_to :station, index: true
-      t.belongs_to :order, index: true
 
       t.timestamps null: false
     end

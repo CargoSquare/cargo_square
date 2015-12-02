@@ -9,6 +9,9 @@ class Manager < ActiveRecord::Base
   validates :phone_number, format: { with: /[0-9]+/, :message => "Invalid phone_number format"}, :allow_blank => true
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "Invalid email format"}, :allow_blank => true
   # Association
+  has_many :general_orders, class_name: "Order", primary_key: "id", foreign_key: "order_manager_id"
+  has_many :charge_orders, class_name: "Order", primary_key: "id", foreign_key: "charge_manager_id"
+  has_many :freight_orders, class_name:"Order", primary_key: "id", foreign_key: "freight_manager_id"
   belongs_to :client
   belongs_to :station
   belongs_to :order

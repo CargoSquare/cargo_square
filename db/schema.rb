@@ -112,31 +112,35 @@ ActiveRecord::Schema.define(version: 20151202052547) do
     t.string   "position"
     t.integer  "client_id"
     t.integer  "station_id"
-    t.integer  "order_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
   add_index "managers", ["client_id"], name: "index_managers_on_client_id"
-  add_index "managers", ["order_id"], name: "index_managers_on_order_id"
   add_index "managers", ["station_id"], name: "index_managers_on_station_id"
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "status",          default: 0
+    t.integer  "status",             default: 0
     t.datetime "pickup_duedate"
     t.datetime "dropoff_duedate"
     t.integer  "sales"
     t.integer  "purchase"
     t.float    "truck_size"
     t.text     "etc"
+    t.integer  "order_manager_id"
+    t.integer  "charge_manager_id"
+    t.integer  "freight_manager_id"
     t.integer  "source_id"
     t.integer  "destination_id"
     t.integer  "truck_driver_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
+  add_index "orders", ["charge_manager_id"], name: "index_orders_on_charge_manager_id"
   add_index "orders", ["destination_id"], name: "index_orders_on_destination_id"
+  add_index "orders", ["freight_manager_id"], name: "index_orders_on_freight_manager_id"
+  add_index "orders", ["order_manager_id"], name: "index_orders_on_order_manager_id"
   add_index "orders", ["source_id"], name: "index_orders_on_source_id"
   add_index "orders", ["truck_driver_id"], name: "index_orders_on_truck_driver_id"
 

@@ -9,6 +9,10 @@ class CreateOrders < ActiveRecord::Migration
       t.float   :truck_size
       t.text    :etc
 
+      t.integer :order_manager_id, index: true
+      t.integer :charge_manager_id, index: true
+      t.integer :freight_manager_id, index: true
+      
       t.integer :source_id, index: true
       t.integer :destination_id, index: true
       t.integer :truck_driver_id, index: true
