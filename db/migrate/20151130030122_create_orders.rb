@@ -6,7 +6,8 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :dropoff_duedate
       t.integer :sales
       t.integer :purchase
-      t.text :etc
+      t.float   :truck_size
+      t.text    :etc
 
       t.integer :source_id, index: true
       t.integer :destination_id, index: true
