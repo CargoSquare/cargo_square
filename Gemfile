@@ -45,6 +45,9 @@ group :development do
   gem 'spring'
 end
 
-# Audited for tracking changes
-gem "audited", "~> 4.0"
-gem "audited-activerecord"
+# Use Audited for tracking changes
+gem 'audited', '~> 4.0'
+gem 'audited-activerecord'
+
+# Use Act As Commentable to comment models
+gem 'acts_as_commentable'
