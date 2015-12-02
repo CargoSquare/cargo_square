@@ -8,8 +8,8 @@ class TruckDriver < ActiveRecord::Base
 
   # Validation
   validates :name, presence: true
-  validates :phone_number, format: {with: /[0-9]+/, :message => "Invalid phone_number format"}
-  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "Invalid email format"}
+  validates :phone_number, format: {with: /[0-9]+/, :message => "Invalid phone_number format"}, :allow_blank => true
+  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "Invalid email format"}, :allow_blank => true
   # Association
   belongs_to :company, class_name: "TruckingCompany", foreign_key: "trucking_company_id"
   has_one :truck

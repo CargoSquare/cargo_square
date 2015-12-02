@@ -6,8 +6,8 @@ class Manager < ActiveRecord::Base
   # Callbacks
   before_save :remove_useless_character
   # Validation
-  validates :phone_number, format: { with: /[0-9]+/, :message => "Invalid phone_number format"}
-  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "Invalid email format"}
+  validates :phone_number, format: { with: /[0-9]+/, :message => "Invalid phone_number format"}, :allow_blank => true
+  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "Invalid email format"}, :allow_blank => true
   # Association
   belongs_to :client
   belongs_to :station
