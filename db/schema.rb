@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20151202052547) do
     t.string   "phone_number"
     t.string   "email"
     t.string   "fax"
+    t.string   "position"
     t.integer  "client_id"
     t.integer  "station_id"
     t.integer  "order_id"

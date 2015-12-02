@@ -5,6 +5,7 @@ class CreateManagers < ActiveRecord::Migration
       t.string :phone_number
       t.string :email
       t.string :fax
+      t.string :position
 
       t.belongs_to :client, index: true
       t.belongs_to :station, index: true
