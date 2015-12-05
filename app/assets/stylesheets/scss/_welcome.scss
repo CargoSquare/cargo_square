@@ -1,0 +1,65 @@
+body {
+	background-color: $color-bg;
+}
+
+.has-nav {
+	padding-top: 70px;
+}
+
+.navbar-custom {
+	background-color: $white;
+	border: none;
+	@include radius($type: border-radius, $value: 0);
+	@include opacity($opacity: 90, $filter: true);
+
+	& .nav li a {
+		color: $aqua-light;
+	}
+
+	& .nav li a:hover,
+	& .nav li a:focus {
+		color: $aqua-darkest;
+		background-color: transparent;
+	}
+	& .navbar-brand {
+		height: 53px;
+	}
+	& .navbar-brand,
+	& .navbar-link,
+	& .btn-link,
+	& .navbar-brand:hover,
+	& .navbar-brand:focus,
+	& .navbar-link:hover,
+	& .btn-link:hover,
+	& .btn-link:focus {
+		color: $mint-dark;
+	}
+
+	// selected
+	& .navbar-nav > .active > a,
+	& .navbar-nav > .active > a:hover,
+	& .navbar-nav > .active > a:focus {
+		color: $aqua-darkest;
+		background-color: $white;
+		border-bottom: 3px solid $aqua-darkest;
+	}
+
+	// dropdown
+	& .navbar-nav > .open > a,
+	& .navbar-nav > .open > a:hover,
+	& .navbar-nav > .open > a:focus {
+		color: $aqua-darkest;
+		background-color: $white;
+	}
+	& .dropdown-menu {
+		background-color: $lightgray-light;
+	}
+	& .dropdown-menu .divider {
+		background-color: $lightgray-dark !important;
+	}
+	
+}
+
+.footer {
+	// background-color: $color-footer;
+}

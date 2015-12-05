@@ -1,0 +1,48 @@
+$color-bg:              #f1f2f6 !default;
+$color-footer:          #f5f5f5 !default;
+$aqua-darkest:					desaturate(darken($aqua-dark, 10%), 10%) !default;
+
+
+// text color classes
+.text-white {
+	color: $white;
+}
+.text-black {
+	color: $black;
+}
+.text-bluejeans {
+	color: $bluejeans-light;
+}
+.text-aqua {
+	color: $aqua-light;
+}
+.text-mint {
+	color: $mint-light;
+}
+.text-grass {
+	color: $grass-light;
+}
+.text-sunflower {
+	color: $sunflower-light;
+}
+.text-bittersweet {
+	color: $bittersweet-light;
+}
+.text-grapefruit {
+	color: $grapefruit-light;
+}
+.text-lavender {
+	color: $lavender-light;
+}
+.text-pinkrose {
+	color: $pinkrose-light;
+}
+.text-lightgray {
+	color: $lightgray-light;
+}
+.text-mediumgray {
+	color: $mediumgray-light;
+}
+.text-darkgray {
+	color: $darkgray-light;
+}

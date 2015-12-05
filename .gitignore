@@ -18,3 +18,7 @@
 
 # Ignore swap file
 *.swp
+
+# Ignore sql
+*.DS_Store
+*.sql

@@ -51,3 +51,16 @@ gem 'audited-activerecord'
 
 # Use Act As Commentable to comment models
 gem 'acts_as_commentable'
+
+# user module
+gem 'devise_token_auth'
+
+# for API service
+gem 'active_model_serializers'
+gem 'rails-api'
+
+# for angularjs
+gem 'angularjs-rails'
+gem 'angular-rails-templates'
+gem 'angular-ui-router-rails'
+

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" ui-sref="welcome">CargoSquare</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				
+				<li ng-repeat="item in states" ng-class="{'active': item.state === currState}" ng-attr-uib-dropdown="{{ item.hasChildren || undefined }}">
+					<a ng-if="item.link" ui-sref="{{ item.link }}">{{ item.name }}</a>
+					<a ng-if="!item.link" uib-dropdown-toggle>{{ item.name }}<span class="caret"></span></a>
+
+					<ul class="dropdown-menu" ng-if="item.hasChildren">
+						<li ng-repeat="child in item.childrens" ng-class="{'divider': child.divider}">
+							<a ng-if="!child.divider" ui-sref="{{ child.link }}">{{ child.name }}</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</nav>
