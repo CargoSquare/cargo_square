@@ -1,6 +1,6 @@
 // main app
 angular.module('app', ['app.controllers', 'app.directives', 'app.services',
- 'templates', 'ui.router', 'ui.bootstrap'])
+ 'templates', 'ui.router', 'ui.bootstrap', 'ng-token-auth'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to root
