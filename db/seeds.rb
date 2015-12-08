@@ -117,3 +117,12 @@ num = 0
   freight.order = order
   freight.save
 end
+
+
+# seed user
+user = User.new
+user.email = "a@a.com"
+user.password = 12341234
+user.save
+
+puts "dummy user created!"

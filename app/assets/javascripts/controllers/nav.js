@@ -21,6 +21,10 @@ angular.module('app.controllers')
 			name: "child2",
 			link: "welcome"
 		}]
+	}, {
+		state: "auth.login",
+		name: "login",
+		link: "auth.login",
 	}];
 
 	$scope.currState = $state.current.name;

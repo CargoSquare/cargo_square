@@ -6,10 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 </head>
 <body ng-app="app">
-	<div ui-view="nav"></div>
-	
+	<div ng-include="'assets/shared/nav.html'" ng-controller="NavCtrl"></div>
+
 	<div class="container has-nav">
-		<div ui-view="body"></div>
+		<ui-view></ui-view>
 	</div>
 
 	<div ng-include="'assets/shared/footer.html'"></div>
