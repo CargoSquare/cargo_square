@@ -1,0 +1,12 @@
+<form class="center-form" ng-controller="AuthLoginCtrl" ng-submit="login($event)">
+	<h2 class="form-heading"></h2>
+	<input type="email" ng-model="email" class="form-control" placeholder="Email" required>
+	<input type="password" ng-model="password" class="form-control" placeholder="Password" required>
+	<div class="checkbox">
+		<label class="icheckbox_flat" ng-class="{'checked': remember}">
+			<input type="checkbox" ng-model="remember">
+			Remember me
+		</label>
+	</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+</form>

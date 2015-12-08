@@ -1,7 +1,8 @@
 // main app
 angular.module('app', ['app.controllers', 'app.directives', 'app.services',
- 'templates', 'ui.router', 'ui.bootstrap'])
+ 'templates', 'ui.router', 'ui.bootstrap', 'ng-token-auth'])
 
+// router config
 .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to root
   $urlRouterProvider.otherwise("/");  
@@ -9,21 +10,32 @@ angular.module('app', ['app.controllers', 'app.directives', 'app.services',
   $stateProvider
     .state('welcome', {
       url: "/",
-      views: {
-        "nav": { templateUrl: "assets/shared/nav.html", controller: 'NavCtrl' },
-        "body": { templateUrl: "assets/welcome.html" }
-      }
+      templateUrl: "assets/welcome.html"
     })
     .state('about', {
       url: "/about",
-      views: {
-        "nav": { templateUrl: "assets/shared/nav.html", controller: 'NavCtrl' },
-        "body": { templateUrl: "assets/about_us.html" }
-      }
+      templateUrl: "assets/about_us.html"
+    })
+    .state('auth', {
+      url: '/auth',
+      abstract: true,
+      template: '<ui-view/>'
+    })
+    .state('auth.login', {
+      url: '/',
+      templateUrl: "assets/auth/login.html"
     })
     ;
 
 })
 
+// auth config
+.config(function($authProvider) {
+  $authProvider.configure({
+    // for development stage
+    apiUrl: 'http://localhost:3000'
+  })
+
+})
 
 ;
