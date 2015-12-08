@@ -1,6 +1,9 @@
+var root = this;
+
 angular.module('app.controllers')
 
 .controller('AuthLoginCtrl', function ($scope, $auth, $state) {
+	root.auth = $auth;
 	$scope.email = "";
 	$scope.password = "";
 	$scope.remember = false;
