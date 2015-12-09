@@ -13,14 +13,18 @@
 			<ul class="nav navbar-nav">
 				
 				<li ng-repeat="item in states" ng-class="{'active': item.state === currState}" ng-attr-uib-dropdown="{{ item.hasChildren || undefined }}">
-					<a ng-if="item.link" ui-sref="{{ item.link }}">{{ item.name }}</a>
-					<a ng-if="!item.link" uib-dropdown-toggle>{{ item.name }}<span class="caret"></span></a>
+					<a ng-if="item.type === 'link'" ui-sref="{{ item.link }}">{{ item.name }}</a>
+					<a ng-if="item.type === 'dropdown'" uib-dropdown-toggle>{{ item.name }}<span class="caret"></span></a>
 
-					<ul class="dropdown-menu" ng-if="item.hasChildren">
+					<ul class="dropdown-menu" ng-if="item.type === 'dropdown'">
 						<li ng-repeat="child in item.childrens" ng-class="{'divider': child.divider}">
-							<a ng-if="!child.divider" ui-sref="{{ child.link }}">{{ child.name }}</a>
+							<a ng-if="child.type === 'link'" ui-sref="{{ child.link }}">{{ child.name }}</a>
+							<a ng-if="child.type === 'button'" ng-click="child.action()">{{ child.name }}</a>
 						</li>
 					</ul>
+
+					<a ng-if="item.type === 'button'" ng-click="item.action()">{{ item.name }}</a>
+
 				</li>
 
 			</ul>
