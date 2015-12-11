@@ -1,6 +1,6 @@
 // main app
 angular.module('app', ['app.controllers', 'app.directives', 'app.services',
- 'templates', 'ui.router', 'ui.bootstrap', 'ng-token-auth'])
+ 'templates', 'ui.router', 'ui.bootstrap', 'ng-token-auth', 'schemaForm'])
 
 // router config
 .config(function($stateProvider, $urlRouterProvider) {

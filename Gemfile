@@ -64,3 +64,6 @@ gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'angular-ui-router-rails'
 
+# for font awesome
+gem "font-awesome-rails"
+
