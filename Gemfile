@@ -64,3 +64,6 @@ gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'angular-ui-router-rails'
 
+# Use Passenger to deploy rails server
+gem 'passenger'
+
