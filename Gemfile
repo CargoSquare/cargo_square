@@ -67,3 +67,6 @@ gem 'angular-ui-router-rails'
 # Use Passenger to deploy rails server
 gem 'passenger'
 
+# for font awesome
+gem "font-awesome-rails"
+
