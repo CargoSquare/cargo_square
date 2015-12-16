@@ -10,11 +10,15 @@ angular.module('app', ['app.controllers', 'app.directives', 'app.services',
   $stateProvider
     .state('welcome', {
       url: "/",
-      templateUrl: "assets/welcome.html"
-    })
-    .state('about', {
-      url: "/about",
-      templateUrl: "assets/about_us.html"
+      controller: function($scope, $state, $auth) {
+        $auth.validateUser()
+          .then(function (user) {
+            $state.go('dash.dashboard');
+          })
+          .catch(function (error) {
+            $state.go('auth.login');
+          });
+      }
     })
     .state('auth', {
       url: '/auth',
@@ -24,6 +28,18 @@ angular.module('app', ['app.controllers', 'app.directives', 'app.services',
     .state('auth.login', {
       url: '/',
       templateUrl: "assets/auth/login.html"
+    })
+    .state('dash', {
+      url: '/dash',
+      abstract: true,
+      templateUrl: "assets/dash/base.html"
+    })
+    .state('dash.dashboard', {
+      url: '/',
+      templateUrl: "assets/welcome.html",
+      controller: function($scope, $state, $auth) {
+        console.log("!");
+      }
     })
     ;
 

@@ -4,6 +4,7 @@ angular.module('app.controllers')
 
 	// scope variables
 	$scope.currState = $state.current.name;
+	$scope.isCollapsed = true;
 
 	// types = [ link, dropdown, button ]
 	$scope.states = [
@@ -72,4 +73,45 @@ angular.module('app.controllers')
 	
 })
 
+.controller('SideNavCtrl', function ($scope, $state) {
+
+	// scope variables
+	$scope.currState = $state.current.name;
+
+	// types = [ link, dropdown ]
+	$scope.states = [
+		{
+			type: "link",
+			state: "about",
+			name: "about us",
+			link: "about"
+		},
+		{
+			type: "dropdown",
+			name: "test",
+			childrens: [
+				{
+					type: "link",
+					state: "test.child1",
+					name: "child1",
+					link: "welcome"
+				}, {
+					divider: true
+				}, {
+					type: "link",
+					state: "test.child2",
+					name: "child2",
+					link: "welcome"
+				}
+			]
+		},
+		{
+			type: "link",
+			state: "auth.login",
+			name: "login",
+			link: "auth.login",
+		}
+	];
+	
+})
 ;

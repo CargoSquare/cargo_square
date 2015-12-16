@@ -70,3 +70,7 @@ gem 'passenger'
 # for font awesome
 gem "font-awesome-rails"
 
+if RUBY_PLATFORM =~ /mingw/
+	gem 'tzinfo-data', platforms: [:mingw, :mswin]
+	gem 'coffee-script-source', '~> 1.8.0'
+end
