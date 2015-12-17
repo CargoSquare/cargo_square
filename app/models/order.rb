@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   acts_as_commentable
   # Statuses
   def self.statuses
-    return ["오더입력", "오더등록", "배차완료", "픽업완료", "하차완료", "마감완료"]
+    return ["대기중", "배차중", "이동중", "상차중", "운송중", "하차중", "운송완료", "마감완료"]
   end
   # Validation
   validates :status, inclusion: {in: Order.statuses}

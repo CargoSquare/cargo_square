@@ -1,0 +1,22 @@
+<div class="col-md-2 col-sm-3" ng-controller="SideNavCtrl">
+	<ul class="nav nav-stacked">
+
+		<li ng-repeat="item in states" ng-class="{'active': item.state === currState}" ng-attr-uib-dropdown="{{ item.hasChildren || undefined }}">
+			<a ng-if="item.type === 'link'" ui-sref="{{ item.link }}">{{ item.name }}</a>
+			<a ng-if="item.type === 'dropdown'" uib-dropdown-toggle>{{ item.name }}<span class="caret"></span></a>
+
+			<ul class="dropdown-menu" ng-if="item.type === 'dropdown'">
+				<li ng-repeat="child in item.childrens" ng-class="{'divider': child.divider}">
+					<a ng-if="child.type === 'link'" ui-sref="{{ child.link }}">{{ child.name }}</a>
+					<a ng-if="child.type === 'button'" ng-click="child.action()">{{ child.name }}</a>
+				</li>
+			</ul>
+
+
+		</li>
+
+	</ul>
+</div>
+<div class="col-md-10 col-sm-9">
+	<ui-view/>
+</div>

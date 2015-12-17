@@ -1,5 +1,3 @@
-var root = this;
-
 angular.module('app.controllers')
 
 .controller('AuthLoginCtrl', function ($scope, loginService) {
