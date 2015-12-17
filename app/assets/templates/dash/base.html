@@ -1,13 +1,13 @@
 <div class="col-md-2 col-sm-3" ng-controller="SideNavCtrl">
-	<ul class="nav nav-stacked">
+	<ul class="nav nav-stacked side-nav">
 
-		<li ng-repeat="item in states" ng-class="{'active': item.state === currState}" ng-attr-uib-dropdown="{{ item.hasChildren || undefined }}">
-			<a ng-if="item.type === 'link'" ui-sref="{{ item.link }}">{{ item.name }}</a>
-			<a ng-if="item.type === 'dropdown'" uib-dropdown-toggle>{{ item.name }}<span class="caret"></span></a>
+		<li ng-repeat="item in states" ng-class="{'active': item.state === currState}">
+			<a ng-if="item.type === 'link'" ui-sref="{{ item.state }}">{{ item.name }}</a>
+			<a ng-if="item.type === 'dropdown'" ng-click="item.isCollapsed = !item.isCollapsed">{{ item.name }}<span class="caret"></span></a>
 
-			<ul class="dropdown-menu" ng-if="item.type === 'dropdown'">
-				<li ng-repeat="child in item.childrens" ng-class="{'divider': child.divider}">
-					<a ng-if="child.type === 'link'" ui-sref="{{ child.link }}">{{ child.name }}</a>
+			<ul class="dropdown-menu" uib-collapse="item.isCollapsed" ng-if="item.type === 'dropdown'">
+				<li ng-repeat="child in item.childrens" ng-class="{'divider': child.divider, 'active': child.state === currState}">
+					<a ng-if="child.type === 'link'" ui-sref="{{ child.state }}">{{ child.name }}</a>
 					<a ng-if="child.type === 'button'" ng-click="child.action()">{{ child.name }}</a>
 				</li>
 			</ul>

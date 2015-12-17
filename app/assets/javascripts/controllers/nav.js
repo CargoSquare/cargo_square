@@ -73,7 +73,7 @@ angular.module('app.controllers')
 	
 })
 
-.controller('SideNavCtrl', function ($scope, $state) {
+.controller('SideNavCtrl', function ($scope, $state, $timeout) {
 
 	// scope variables
 	$scope.currState = $state.current.name;
@@ -81,37 +81,63 @@ angular.module('app.controllers')
 	// types = [ link, dropdown ]
 	$scope.states = [
 		{
-			type: "link",
-			state: "about",
-			name: "about us",
-			link: "about"
-		},
-		{
 			type: "dropdown",
-			name: "test",
+			name: "오더 관리",
+			state: "dash.order",
 			childrens: [
 				{
 					type: "link",
-					state: "test.child1",
-					name: "child1",
-					link: "welcome"
-				}, {
-					divider: true
-				}, {
+					state: "dash.order.state",
+					name: "오더 현황"
+				},
+				{
 					type: "link",
-					state: "test.child2",
-					name: "child2",
-					link: "welcome"
+					state: "dash.order.new",
+					name: "오더 등록"
+				}
+			]
+		},
+		{
+			type: "dropdown",
+			name: "고객 관리",
+			state: "dash.customer",
+			childrens: [
+				{
+					type: "link",
+					state: "dash.customer.clients",
+					name: "고객사 관리",
+				}, 
+				{
+					type: "link",
+					state: "dash.customer.managers",
+					name: "담당자 관리",
 				}
 			]
 		},
 		{
 			type: "link",
-			state: "auth.login",
-			name: "login",
-			link: "auth.login",
+			state: "dash.test",
+			name: "test"
 		}
 	];
+
+	// when state changes
+	$scope.$on('$stateChangeSuccess', function() {
+		
+			$scope.currState = $state.current.name;
+
+			angular.forEach($scope.states, function (state) {
+				stateRegex = new RegExp(state.state);
+				if ( stateRegex.test($scope.currState) ) {
+					state.isCollapsed = false;
+				}
+				else {
+					state.isCollapsed = true;	
+				}
+			});
+
+	});
+	
 	
 })
 ;

@@ -38,8 +38,22 @@ angular.module('app', ['app.controllers', 'app.directives', 'app.services',
       url: '/',
       templateUrl: "assets/welcome.html",
       controller: function($scope, $state, $auth) {
-        console.log("!");
+        
       }
+    })
+    .state('dash.order', {
+      url: '/order',
+      abstract: true,
+      template: '<ui-view/>'
+    })
+    .state('dash.order.state', {
+      url: "/state",
+      templateUrl: "assets/dash/order-state.html",
+      controller: "DashOrderStateCtrl"
+    })
+    .state('dash.order.new', {
+      url: "/new",
+      templateUrl: "assets/dash/order-new.html"
     })
     ;
 

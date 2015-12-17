@@ -1,0 +1,52 @@
+<div class="col-sm-10 col-sm-offset-1">
+	<!-- section for search -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Search</h3>
+		</div>
+		<div class="panel-body">
+
+			<div class="input-group">
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</span>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3" ng-repeat="(_, statusName) in filter.statuses">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> {{ ::statusName }}
+						</label>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- section for results -->
+	<div class="page-title">
+		<h3>오더 현황</h3>
+		<hr>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">오더 현황</h3>
+		</div>
+
+		<table class="table text-center">
+			<tbody>
+				<tr ng-repeat="order in orders">
+					<td>{{ filter.statuses[ order.status ] }}</td>
+					<td>(주)카고스퀘어</td>
+					<td>AAAA<br>{{ order.pickupDuedate | date:"MM월 dd일 HH시 mm분" }} 상차</td>
+					<td>BBBB<br>{{ order.dropoffDuedate | date:"MM월 dd일 HH시 mm분" }} 하차</td>
+					<td><order-action status="{{order.status}}"></order-action></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
